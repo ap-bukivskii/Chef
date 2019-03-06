@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/src/ua/training/bukivskii/Messages.properties" />
+    <file url="file://$PROJECT_DIR$/src/ua/training/bukivskii/Messages_ua.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/ua/training/bukivskii/Messages.properties" />
+      <file value="file://$PROJECT_DIR$/src/ua/training/bukivskii/Messages_ua.properties" />
+      <base-name>Messages</base-name>
+    </custom-resource-bundle>
+  </component>
+</project>
