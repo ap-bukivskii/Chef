@@ -28,7 +28,7 @@ public class Vegetable implements Saladable {
     }
 
     @Override
-    public String toStringForUser() {
-        return  name + "\t" + calories + "\t" + cost +"\n";
+    public String toStringForUser() { //TODO is it normal?
+        return  name + "\t\t" + calories + "\t\t\t\t" + cost +"\n";
     }
 }

@@ -1,46 +1,17 @@
 package ua.training.bukivskii.model.entities;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Objects;
 
 public class Salad implements Dish {
     private ArrayList<Saladable> ingredients;
     private String name;
+    private int totalCost;
+    private int totalCalories;
 
     public Salad(String name){
         this.name = name;
         this.ingredients = new ArrayList<>();
-    }
-
-    //TODO where to sort and stuff?
-    @Override
-    public String getIngredientsSortedByCalories() {
-        StringBuilder result = new StringBuilder();
-        ingredients.stream().
-                sorted(Comparator.comparingInt(Saladable::getCalories)).
-                map(Saladable::toStringForUser). //TODO is it OK to owerride tostring as we want?
-                forEach(result::append);
-        return new String(result);
-    }
-
-    @Override
-    public String getIngredientsSortedByCost() {
-        StringBuilder result = new StringBuilder();
-        ingredients.stream().
-                sorted(Comparator.comparingInt(Saladable::getCost)).
-                map(Saladable::toStringForUser). //TODO fix duplicate code
-                forEach(result::append);
-        return new String(result);
-    }
-
-    @Override
-    public String getIngredientsSortedByName() {
-        StringBuilder result = new StringBuilder();
-        ingredients.stream().
-                sorted(Comparator.comparing(Saladable::getName)).
-                map(Saladable::toStringForUser).
-                forEach(result::append);
-        return new String(result);
     }
 
     @Override
@@ -50,26 +21,24 @@ public class Salad implements Dish {
 
     @Override
     public int getTotalCalories() {
-        return ingredients.stream().mapToInt(Saladable::getCalories).sum();
+        return this.totalCalories;
     }
 
     @Override
     public int getTotalCost() {
-        return ingredients.stream().mapToInt(Saladable::getCost).sum();
+        return this.totalCost;
     }
 
     @Override
-    public String getIngredientsInCaloriesRange(final int caloriesMin, final int caloriesMax) {
-        StringBuilder result = new StringBuilder();
-        ingredients.stream().
-                filter(i-> (i.getCalories() > caloriesMin) && (i.getCalories() < caloriesMax)).
-                map(Saladable::toStringForUser).
-                forEach(result::append);
-        return new String(result);
+    public ArrayList<Saladable> getIngredients() {
+        return ingredients;
     }
 
     @Override
     public void addIngredient(Saladable ingredient) {
+        Objects.requireNonNull(ingredient);
         this.ingredients.add(ingredient);
-    }
+        this.totalCost+=ingredient.getCost();
+        this.totalCalories+=ingredient.getCalories();
+    } //TODO Salad`s method?
 }
